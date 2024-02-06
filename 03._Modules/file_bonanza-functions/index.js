@@ -13,5 +13,5 @@ if (option === 'txt') {
 } else if (option === 'yaml') {
     readAndParseYAML('../../02._Data_Files/me.yaml');
 } else {
-    console.log('Please provide a valid argument: "text" or "xml"');
+    console.log('Please provide a valid argument: "txt", "xml", "json", "csv" or "yaml"');
 }
