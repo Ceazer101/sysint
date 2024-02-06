@@ -14,7 +14,6 @@ function readTextFile(filename) {
     });
 }
 
-// Function to read and parse an XML file
 function readAndParseXML(filename) {
     fs.readFile(filename, 'utf8', (err, data) => {
         if (err) {
@@ -22,20 +21,17 @@ function readAndParseXML(filename) {
             return;
         }
 
-        // Parse XML to JavaScript object
         xml2js.parseString(data, (parseErr, result) => {
             if (parseErr) {
                 console.error('Error parsing XML:', parseErr);
                 return;
             }
             
-            // Access elements and attributes of the parsed XML object
             const me = result.me;
             const name = me.name[0];
             const age = me.age[0];
             const hobbies = me.hobbies[0].hobby;
 
-            // Print parsed data
             console.log('Name:', name);
             console.log('Age:', age);
             console.log('Hobbies:', hobbies.join(', '));
