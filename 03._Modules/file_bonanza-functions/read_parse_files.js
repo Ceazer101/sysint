@@ -41,4 +41,13 @@ function readAndParseXML(filename) {
     });
 }
 
-module.exports = { readTextFile, readAndParseXML };
+function readAndParseJSON(filename) {
+    try {
+        const jsonData = JSON.parse(fs.readFileSync(filename, 'utf8'));
+        console.log('Parsed JSON:', jsonData);
+    } catch (err) {
+        console.error('Error parsing JSON:', err);
+    }
+}
+
+module.exports = { readTextFile, readAndParseXML, readAndParseJSON };
