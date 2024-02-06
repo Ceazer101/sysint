@@ -1,6 +1,7 @@
 const fs = require('fs');
 const xml2js = require('xml2js');
 const csvParser = require('csv-parser');
+const yaml = require('js-yaml');
 
 function readTextFile(filename) {
     fs.readFile(filename, 'utf8', (err, data) => {
@@ -61,4 +62,13 @@ function readAndParseCSV(filename) {
         });
 }
 
-module.exports = { readTextFile, readAndParseXML, readAndParseJSON, readAndParseCSV };
+function readAndParseYAML(filename) {
+    try {
+        const yamlData = yaml.load(fs.readFileSync(filename, 'utf8'));
+        console.log('Parsed YAML:', yamlData);
+    } catch (err) {
+        console.error('Error parsing YAML:', err);
+    }
+}
+
+module.exports = { readTextFile, readAndParseXML, readAndParseJSON, readAndParseCSV, readAndParseYAML };
