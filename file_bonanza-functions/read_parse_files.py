@@ -4,19 +4,19 @@ import csv
 import xml.etree.ElementTree as ET
 
 # Read and parse JSON file
-with open('../../02._Data_Files/me.json', 'r') as json_file:
+with open('../02._Data_Files/me.json', 'r') as json_file:
     json_data = json.load(json_file)
     print(f"-----Text from json file-----")
     print(json_data)
 
 # Read and parse YAML file
-with open('../../02._Data_Files/me.yaml', 'r') as yaml_file:
+with open('../02._Data_Files/me.yaml', 'r') as yaml_file:
     yaml_data = yaml.safe_load(yaml_file)
     print(f"-----Text from yaml file-----")
     print(yaml_data)
 
 # Read and parse CSV file
-with open('../../02._Data_Files/me.csv', 'r') as csv_file:
+with open('../02._Data_Files/me.csv', 'r') as csv_file:
     csv_data = csv.DictReader(csv_file)
     print(f"-----Text from csv file-----")
     for row in csv_data:
@@ -45,7 +45,7 @@ def read_and_parse_xml(filename):
     except Exception as e:
         print("An error occurred:", e)
 
-read_and_parse_xml('../../02._Data_Files/me.xml')
+read_and_parse_xml('../02._Data_Files/me.xml')
 
 # Read and parse the TXT file
 def read_text_file(filename):
@@ -59,4 +59,4 @@ def read_text_file(filename):
     except Exception as e:
         print("An error occurred:", e)
 
-read_text_file('../../02._Data_Files/me.txt')
+read_text_file('../02._Data_Files/me.txt')
