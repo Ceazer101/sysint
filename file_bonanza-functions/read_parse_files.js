@@ -10,6 +10,7 @@ function readTextFile(filename, callback) {
             return;
         }
         callback(null, data);
+        
     });
 }
 
@@ -26,15 +27,18 @@ function readAndParseXML(filename, callback) {
                 return;
             }
             
-            const me = result.me;
-            const name = me.name[0];
-            const age = me.age[0];
-            const hobbies = me.hobbies[0].hobby;
+            const skills = result.skills;
+            const cantrips = skills.cantrips[0].cantrip;
+            const spells = skills.spells[0].spell;
+            const wildshape = {
+                animals: skills.wildshape[0].animal,
+                elementals: skills.wildshape[0].elemental
+            };
 
             const parsedData = {
-                name: name,
-                age: age,
-                hobbies: hobbies
+                cantrips: cantrips,
+                spells: spells,
+                wildshape: wildshape
             };
 
             callback(null, parsedData);

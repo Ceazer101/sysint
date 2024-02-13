@@ -4,8 +4,8 @@ const { readTextFile, readAndParseXML, readAndParseJSON, readAndParseCSV, readAn
 const app = express();
 
 // Route handler for txt files
-app.get("/txt", (req, res) => {
-    readTextFile('../02._Data_Files/me.txt', (err, txtFile) => {
+app.get("/", (req, res) => {
+    readTextFile('../02._Data_Files/intro.txt', (err, txtFile) => {
         if (err) {
             res.status(500).send({ error: "Error reading text file" });
             return;
@@ -15,8 +15,8 @@ app.get("/txt", (req, res) => {
 });
 
 // Route handler for XML files
-app.get("/xml", (req, res) => {
-    readAndParseXML('../02._Data_Files/me.xml', (err, xmlData) => {
+app.get("/skills", (req, res) => {
+    readAndParseXML('../02._Data_Files/skills.xml', (err, xmlData) => {
         if (err) {
             res.status(500).send({ error: "Error parsing XML file" });
             return;
@@ -26,7 +26,7 @@ app.get("/xml", (req, res) => {
 });
 
 // Route handler for JSON files
-app.get("/json", (req, res) => {
+app.get("/me", (req, res) => {
     readAndParseJSON('../02._Data_Files/me.json', (err, jsonData) => {
         if (err) {
             res.status(500).send({ error: "Error parsing JSON file" });
@@ -37,8 +37,8 @@ app.get("/json", (req, res) => {
 });
 
 // Route handler for CSV files
-app.get("/csv", (req, res) => {
-    readAndParseCSV('../02._Data_Files/me.csv', (err, csvData) => {
+app.get("/class", (req, res) => {
+    readAndParseCSV('../02._Data_Files/class.csv', (err, csvData) => {
         if (err) {
             res.status(500).send({ error: "Error parsing CSV file" });
             return;
@@ -48,8 +48,8 @@ app.get("/csv", (req, res) => {
 });
 
 // Route handler for YAML files
-app.get("/yaml", (req, res) => {
-    readAndParseYAML('../02._Data_Files/me.yaml', (err, yamlData) => {
+app.get("/gear", (req, res) => {
+    readAndParseYAML('../02._Data_Files/gear.yaml', (err, yamlData) => {
         if (err) {
             res.status(500).send({ error: "Error parsing YAML file" });
             return;

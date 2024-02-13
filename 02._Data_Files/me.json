@@ -1,5 +1,9 @@
 {
-	"name": "Chris",
+	"name": "Janessa Wildbark",
     "age": 27,
-    "hobbies": ["coding", "gaming", "sports"]
+    "race": {
+        "type": "Tiefling",
+        "subrace": "Asmodeus"
+    },
+    "attributes": ["tail", "horns", "black eyes"]
 }
