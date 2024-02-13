@@ -3,27 +3,26 @@ const xml2js = require('xml2js');
 const csvParser = require('csv-parser');
 const yaml = require('js-yaml');
 
-function readTextFile(filename) {
+function readTextFile(filename, callback) {
     fs.readFile(filename, 'utf8', (err, data) => {
         if (err) {
-            console.error('Error reading the file:', err);
+            callback(err, null);
             return;
         }
-        console.log('Text from', filename, ':');
-        console.log(data);
+        callback(null, data);
     });
 }
 
-function readAndParseXML(filename) {
+function readAndParseXML(filename, callback) {
     fs.readFile(filename, 'utf8', (err, data) => {
         if (err) {
-            console.error('Error reading the file:', err);
+            callback(err, null);
             return;
         }
 
         xml2js.parseString(data, (parseErr, result) => {
             if (parseErr) {
-                console.error('Error parsing XML:', parseErr);
+                callback(parseErr, null);
                 return;
             }
             
@@ -32,39 +31,57 @@ function readAndParseXML(filename) {
             const age = me.age[0];
             const hobbies = me.hobbies[0].hobby;
 
-            console.log('Name:', name);
-            console.log('Age:', age);
-            console.log('Hobbies:', hobbies.join(', '));
+            const parsedData = {
+                name: name,
+                age: age,
+                hobbies: hobbies
+            };
+
+            callback(null, parsedData);
         });
     });
 }
 
-function readAndParseJSON(filename) {
-    try {
-        const jsonData = JSON.parse(fs.readFileSync(filename, 'utf8'));
-        console.log('Parsed JSON:', jsonData);
-    } catch (err) {
-        console.error('Error parsing JSON:', err);
-    }
+function readAndParseJSON(filename, callback) {
+    fs.readFile(filename, 'utf8', (err, data) => {
+        if (err) {
+            callback(err, null);
+            return;
+        }
+
+        try {
+            const jsonData = JSON.parse(data);
+            callback(null, jsonData);
+        } catch (parseErr) {
+            callback(parseErr, null);
+        }
+    });
 }
 
-function readAndParseCSV(filename) {
+function readAndParseCSV(filename, callback) {
     const results = [];
     fs.createReadStream(filename)
         .pipe(csvParser())
         .on('data', (data) => results.push(data))
         .on('end', () => {
-            console.log('Parsed CSV:', results);
+            callback(null, results);
         });
 }
 
-function readAndParseYAML(filename) {
-    try {
-        const yamlData = yaml.load(fs.readFileSync(filename, 'utf8'));
-        console.log('Parsed YAML:', yamlData);
-    } catch (err) {
-        console.error('Error parsing YAML:', err);
-    }
+function readAndParseYAML(filename, callback) {
+    fs.readFile(filename, 'utf8', (err, data) => {
+        if (err) {
+            callback(err, null);
+            return;
+        }
+
+        try {
+            const yamlData = yaml.load(data);
+            callback(null, yamlData);
+        } catch (parseErr) {
+            callback(parseErr, null);
+        }
+    });
 }
 
 module.exports = { readTextFile, readAndParseXML, readAndParseJSON, readAndParseCSV, readAndParseYAML };
