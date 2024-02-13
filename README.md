@@ -8,3 +8,4 @@ Relevant folders and information for this assignment
 
 1. Run python script with the command "python read_parse_files.py"
 2. Run the js script by using the command "node index.js" + the disired format.
+-----------------------------------------outdated-------------------------------------------
