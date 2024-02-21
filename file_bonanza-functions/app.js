@@ -1,5 +1,5 @@
-const express = require("express");
-const { readTextFile, readAndParseXML, readAndParseJSON, readAndParseCSV, readAndParseYAML } = require('./read_parse_files');
+import express from "express";
+import { readTextFile, readAndParseXML, readAndParseJSON, readAndParseCSV, readAndParseYAML } from './read_parse_files.js';
 
 const app = express();
 

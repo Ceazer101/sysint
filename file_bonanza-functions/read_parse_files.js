@@ -1,7 +1,7 @@
-const fs = require('fs');
-const xml2js = require('xml2js');
-const csvParser = require('csv-parser');
-const yaml = require('js-yaml');
+import * as fs from 'fs';
+import * as xml2js from 'xml2js';
+import * as csvParser from 'csv-parser';
+import * as yaml from 'js-yaml';
 
 function readTextFile(filename, callback) {
     fs.readFile(filename, 'utf8', (err, data) => {
@@ -88,4 +88,4 @@ function readAndParseYAML(filename, callback) {
     });
 }
 
-module.exports = { readTextFile, readAndParseXML, readAndParseJSON, readAndParseCSV, readAndParseYAML };
+export { readTextFile, readAndParseXML, readAndParseJSON, readAndParseCSV, readAndParseYAML };
